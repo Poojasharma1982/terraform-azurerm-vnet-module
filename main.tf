@@ -1,30 +1,5 @@
 resource "azurerm_virtual_network" "myvnet1" {
-  name                = var.virtualNetwork1
+  name                = var.vnet_name
   location            = "eastus2"
-  address_space       = ["10.0.0.0/16"]
-  dns_servers         = ["10.0.0.4", "10.0.0.5"]
-
-  ddos_protection_plan {
-    id     = azurerm_network_ddos_protection_plan.myvnet1.id
-    enable = true
-  }
-
-  subnet {
-    name           = "subnet1"
-    address_prefix = "10.0.1.0/24"
-  }
-
-  subnet {
-    name           = "subnet2"
-    address_prefix = "10.0.2.0/24"
-  }
-
-  subnet {
-    name           = "subnet3"
-    address_prefix = "10.0.3.0/24"
-  }
-
-  tags = {
-    environment = "Production"
-  }
+  address_space       = var.vnet_address
 }
