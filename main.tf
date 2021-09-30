@@ -1,7 +1,6 @@
 resource "azurerm_virtual_network" "myvnet1" {
-  name                = "virtualNetwork1"
-  location            = azurerm_resource_group.myvnet1.location
-  resource_group_name = azurerm_resource_group.myvnet1.name
+  name                = var.virtualNetwork1
+  location            = "eastus2"
   address_space       = ["10.0.0.0/16"]
   dns_servers         = ["10.0.0.4", "10.0.0.5"]
 
@@ -23,7 +22,6 @@ resource "azurerm_virtual_network" "myvnet1" {
   subnet {
     name           = "subnet3"
     address_prefix = "10.0.3.0/24"
-    security_group = azurerm_network_security_group.myvnet1.id
   }
 
   tags = {
